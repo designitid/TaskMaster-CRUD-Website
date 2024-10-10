@@ -1,0 +1,412 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <div class="w-1/4 bg-white p-6">
+        <div class="flex items-center mb-8">
+          <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+          <h1 class="text-2xl font-bold">TaskMaster</h1>
+        </div>
+        <h2 class="text-3xl font-bold mb-4">
+          Start Your Day & Be Productive <span class="text-yellow-500">✌️</span>
+        </h2>
+        <nav class="mb-8">
+          <h3 class="text-lg font-semibold mb-2">MENU</h3>
+          <ul>
+            <li class="flex items-center mb-4">
+              <i class="fas fa-tachometer-alt mr-3"></i>
+              <span class="font-semibold">Dashboard</span>
+            </li>
+            <li class="flex items-center mb-4">
+              <i class="fas fa-envelope mr-3"></i>
+              <span class="font-semibold">Messages</span>
+              <span
+                class="ml-auto bg-red-500 text-white text-xs rounded-full px-2 py-1"
+                >+6</span
+              >
+            </li>
+            <li class="flex items-center mb-4">
+              <i class="fas fa-tasks mr-3"></i>
+              <span class="font-semibold">My Tasks</span>
+            </li>
+            <li class="flex items-center mb-4">
+              <i class="fas fa-user-friends mr-3"></i>
+              <span class="font-semibold">Friends</span>
+            </li>
+            <li class="flex items-center mb-4">
+              <i class="fas fa-calendar-alt mr-3"></i>
+              <span class="font-semibold">Calendar</span>
+              <span
+                class="ml-auto bg-red-500 text-white text-xs rounded-full px-2 py-1"
+                >+2</span
+              >
+            </li>
+          </ul>
+        </nav>
+        <div class="flex items-center mb-4">
+          <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+          <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+          <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+          <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+          <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+          <div
+            class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-xs"
+          >
+            +10
+          </div>
+        </div>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <div class="flex items-center mb-2">
+            <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+            <span class="font-semibold"
+              >Michie<span class="text-yellow-500">✌️</span>+2</span
+            >
+          </div>
+          <div class="mb-2">
+            <p class="text-sm">
+              Morning<span class="text-yellow-500">✌️</span>
+            </p>
+            <p class="text-xs text-gray-500">12:49</p>
+          </div>
+          <div class="mb-2">
+            <p class="text-sm">
+              Today we will move on to the wireframe process
+            </p>
+            <p class="text-xs text-gray-500">12:50</p>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-check text-green-500 mr-2"></i>
+            <p class="text-sm">
+              Okay Michie<span class="text-green-500">👍</span>
+            </p>
+            <p class="text-xs text-gray-500 ml-auto">13:00</p>
+          </div>
+        </div>
+      </div>
+      <!-- Main Content -->
+      <div class="w-3/4 p-6">
+        <div class="flex items-center justify-between mb-6">
+          <div class="relative w-1/2">
+            <input
+              type="text"
+              class="w-full p-3 rounded-lg bg-gray-200"
+              placeholder="Start searching here..."
+            />
+            <i class="fas fa-search absolute top-3 right-3 text-gray-500"></i>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-cog text-gray-500 text-xl mr-4"></i>
+            <i class="fas fa-bell text-gray-500 text-xl mr-4"></i>
+            <i class="fas fa-user-circle text-gray-500 text-xl mr-4"></i>
+            <div class="flex items-center">
+              <div class="w-10 h-10 bg-gray-300 rounded-full mr-2"></div>
+              <div>
+                <p class="font-semibold">Kim So Men</p>
+                <p class="text-xs text-gray-500">UI/UX Designer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-6">
+          <!-- Today Tasks -->
+          <div class="col-span-2 bg-white p-6 rounded-lg">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold">Today Tasks</h3>
+              <button class="text-gray-500">See All</button>
+            </div>
+            <div id="task-list" class="space-y-4">
+              <!-- Task items will be dynamically added here -->
+            </div>
+            <div class="bg-black text-white p-4 rounded-lg mt-4">
+              <p>
+                You have <span id="task-count">0</span> tasks today. Keep it up!
+                <span class="text-yellow-500">💪</span>
+              </p>
+              <button class="ml-auto text-white">X</button>
+            </div>
+            <div class="mt-4">
+              <input
+                id="new-task-title"
+                type="text"
+                class="w-full p-3 rounded-lg bg-gray-200"
+                placeholder="Task title..."
+              />
+              <textarea
+                id="new-task-description"
+                class="w-full p-3 mt-2 rounded-lg bg-gray-200"
+                placeholder="Task description..."
+              ></textarea>
+              <input
+                id="new-task-date"
+                type="date"
+                class="w-full p-3 mt-2 rounded-lg bg-gray-200"
+              />
+              <select
+                id="new-task-type"
+                class="w-full p-3 mt-2 rounded-lg bg-gray-200"
+              >
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="other">Other</option>
+              </select>
+              <button
+                id="add-task-btn"
+                class="mt-2 w-full p-3 bg-green-500 text-white rounded-lg"
+              >
+                Add Task
+              </button>
+            </div>
+          </div>
+          <!-- Calendar -->
+          <div class="bg-white p-6 rounded-lg">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold">Calendar</h3>
+              <button class="text-gray-500">
+                February <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div id="calendar" class="grid grid-cols-7 gap-2 text-center">
+              <div class="text-gray-500">S</div>
+              <div class="text-gray-500">M</div>
+              <div class="text-gray-500">T</div>
+              <div class="text-gray-500">W</div>
+              <div class="text-gray-500">T</div>
+              <div class="text-gray-500">F</div>
+              <div class="text-gray-500">S</div>
+              <!-- Calendar days will be dynamically added here -->
+            </div>
+          </div>
+          <!-- Task Progress -->
+          <div class="bg-white p-6 rounded-lg">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold">Task Progress</h3>
+              <button class="text-gray-500">
+                <i class="fas fa-ellipsis-h"></i>
+              </button>
+            </div>
+            <div class="grid grid-cols-5 gap-2 text-center">
+              <div class="text-gray-500">13</div>
+              <div class="text-gray-500">14</div>
+              <div class="text-gray-500">15</div>
+              <div class="text-gray-500">16</div>
+              <div class="text-gray-500">17</div>
+              <div class="text-gray-500">18</div>
+              <div class="text-gray-500">19</div>
+              <div class="text-gray-500">20</div>
+              <div class="text-gray-500">21</div>
+              <div class="text-gray-500">22</div>
+              <div class="text-gray-500">23</div>
+              <div class="text-gray-500">24</div>
+              <div class="text-gray-500">25</div>
+              <div class="text-gray-500">26</div>
+              <div class="text-gray-500">27</div>
+              <div class="text-gray-500">28</div>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <div class="text-green-500">+8%</div>
+              <div class="text-red-500">-12%</div>
+              <div class="text-green-500">+22%</div>
+              <div class="text-red-500">-6%</div>
+              <div class="text-green-500">+10%</div>
+            </div>
+          </div>
+          <!-- Task Timeline -->
+          <div class="bg-white p-6 rounded-lg">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold">Task Timeline</h3>
+              <button class="text-gray-500">
+                <i class="fas fa-ellipsis-h"></i>
+              </button>
+            </div>
+            <div class="grid grid-cols-4 gap-2 text-center">
+              <div class="text-gray-500">13</div>
+              <div class="text-gray-500">14</div>
+              <div class="text-gray-500">15</div>
+              <div class="text-gray-500">16</div>
+              <div class="text-gray-500">17</div>
+              <div class="text-gray-500">18</div>
+              <div class="text-gray-500">19</div>
+              <div class="text-gray-500">20</div>
+              <div class="text-gray-500">21</div>
+              <div class="text-gray-500">22</div>
+              <div class="text-gray-500">23</div>
+              <div class="text-gray-500">24</div>
+              <div class="text-gray-500">25</div>
+              <div class="text-gray-500">26</div>
+              <div class="text-gray-500">27</div>
+              <div class="text-gray-500">28</div>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <div class="text-red-500">Interview</div>
+              <div class="text-green-500">Ideate</div>
+              <div class="text-blue-500">Wireframe</div>
+              <div class="text-black">Evaluate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const taskList = document.getElementById("task-list");
+        const taskCount = document.getElementById("task-count");
+        const newTaskTitle = document.getElementById("new-task-title");
+        const newTaskDescription = document.getElementById(
+          "new-task-description"
+        );
+        const newTaskDate = document.getElementById("new-task-date");
+        const newTaskType = document.getElementById("new-task-type");
+        const addTaskBtn = document.getElementById("add-task-btn");
+        const calendar = document.getElementById("calendar");
+
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+        const renderTasks = () => {
+          taskList.innerHTML = "";
+          tasks.forEach((task, index) => {
+            const taskItem = document.createElement("div");
+            taskItem.className =
+              "bg-gray-100 p-4 rounded-lg flex items-center justify-between";
+            taskItem.innerHTML = `
+                        <div>
+                            <h4 class="font-semibold">${task.title}</h4>
+                            <p class="text-sm text-gray-500">${task.description}</p>
+                            <p class="text-xs text-gray-500">${task.date}</p>
+                            <p class="text-xs text-gray-500">${task.type}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <button class="edit-task-btn text-blue-500 mr-2" data-index="${index}"><i class="fas fa-edit"></i></button>
+                            <button class="delete-task-btn text-red-500" data-index="${index}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    `;
+            taskList.appendChild(taskItem);
+          });
+          taskCount.textContent = tasks.length;
+          renderCalendar();
+        };
+
+        const addTask = (title, description, date, type) => {
+          tasks.push({ title, description, date, type });
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+          renderTasks();
+        };
+
+        const editTask = (index, title, description, date, type) => {
+          tasks[index] = { title, description, date, type };
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+          renderTasks();
+        };
+
+        const deleteTask = (index) => {
+          tasks.splice(index, 1);
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+          renderTasks();
+        };
+
+        const renderCalendar = () => {
+          const daysInMonth = new Date(2023, 1, 0).getDate(); // February 2023
+          calendar.innerHTML = `
+                    <div class="text-gray-500">S</div>
+                    <div class="text-gray-500">M</div>
+                    <div class="text-gray-500">T</div>
+                    <div class="text-gray-500">W</div>
+                    <div class="text-gray-500">T</div>
+                    <div class="text-gray-500">F</div>
+                    <div class="text-gray-500">S</div>
+                `;
+          for (let i = 1; i <= daysInMonth; i++) {
+            const dayElement = document.createElement("div");
+            dayElement.className = "text-gray-500";
+            dayElement.textContent = i;
+            const taskOnThisDay = tasks.find(
+              (task) => new Date(task.date).getDate() === i
+            );
+            if (taskOnThisDay) {
+              switch (taskOnThisDay.type) {
+                case "work":
+                  dayElement.classList.add(
+                    "bg-blue-500",
+                    "text-white",
+                    "rounded-full"
+                  );
+                  break;
+                case "personal":
+                  dayElement.classList.add(
+                    "bg-green-500",
+                    "text-white",
+                    "rounded-full"
+                  );
+                  break;
+                case "other":
+                  dayElement.classList.add(
+                    "bg-yellow-500",
+                    "text-white",
+                    "rounded-full"
+                  );
+                  break;
+              }
+            }
+            calendar.appendChild(dayElement);
+          }
+        };
+
+        addTaskBtn.addEventListener("click", () => {
+          const title = newTaskTitle.value.trim();
+          const description = newTaskDescription.value.trim();
+          const date = newTaskDate.value;
+          const type = newTaskType.value;
+          if (title && description && date && type) {
+            addTask(title, description, date, type);
+            newTaskTitle.value = "";
+            newTaskDescription.value = "";
+            newTaskDate.value = "";
+            newTaskType.value = "work";
+          }
+        });
+
+        taskList.addEventListener("click", (e) => {
+          if (e.target.closest(".edit-task-btn")) {
+            const index = e.target.closest(".edit-task-btn").dataset.index;
+            const newTitle = prompt("Edit task title:", tasks[index].title);
+            const newDescription = prompt(
+              "Edit task description:",
+              tasks[index].description
+            );
+            const newDate = prompt("Edit task date:", tasks[index].date);
+            const newType = prompt("Edit task type:", tasks[index].type);
+            if (newTitle && newDescription && newDate && newType) {
+              editTask(index, newTitle, newDescription, newDate, newType);
+            }
+          } else if (e.target.closest(".delete-task-btn")) {
+            const index = e.target.closest(".delete-task-btn").dataset.index;
+            if (confirm("Are you sure you want to delete this task?")) {
+              deleteTask(index);
+            }
+          }
+        });
+
+        renderTasks();
+      });
+    </script>
+  </body>
+</html>
